@@ -13,11 +13,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import com.coledspot.demo.svc.member.MemberSvc;
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
+	@Autowired
+	private MemberSvc membersvc;
 	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
@@ -55,11 +59,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
           .accessDeniedPage("/denied");
 	}
 	
-	
-	@Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        //auth.userDetailsService(accountsvc).passwordEncoder(passwordEncoder());
-    }
+	   @Override
+	    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+	       auth.userDetailsService(membersvc).passwordEncoder(passwordEncoder());
+	    }
 	
 	
     @Configuration

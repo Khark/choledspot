@@ -12,7 +12,7 @@ public class MemberResDTO {
 	
 	private Integer memberid;	
 	private String membername;
-	private String account_id;
+	private String accountid;
 	private String password;	
 	private LocalDateTime lastAccessDt;
 	private LocalDateTime regDt;
@@ -24,7 +24,7 @@ public class MemberResDTO {
 	public MemberEntity toEntity() {
 		return MemberEntity.builder().
 				membername(membername).
-				account_id(account_id).
+				accountid(accountid).
 				password(password).
 				role(role).
 				groupid(groupid).

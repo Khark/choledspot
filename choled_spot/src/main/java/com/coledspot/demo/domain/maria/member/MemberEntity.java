@@ -2,12 +2,13 @@ package com.coledspot.demo.domain.maria.member;
 
 import java.time.LocalDateTime;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,7 +31,7 @@ public class MemberEntity {
 	private String membername;
 	
 	@Column(name ="account_id")
-	private String account_id;
+	private String accountid;
 	
 	@Column(name ="password")
 	private String password;	
@@ -54,10 +55,10 @@ public class MemberEntity {
 	private Integer useyn;
 
 	@Builder
-	public MemberEntity(String membername, String account_id, String password, Integer role, Integer groupid, Integer recommendcnt, Integer useyn) {
+	public MemberEntity(String membername, String accountid, String password, Integer role, Integer groupid, Integer recommendcnt, Integer useyn) {
 		
 		this.membername = membername;
-		this.account_id = account_id;
+		this.accountid = accountid;
 		this.password = password;
 		this.role = role;
 		this.groupid = groupid;

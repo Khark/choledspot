@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http ) throws Exception {
 		http.csrf().disable();
 		
-		http.authorizeHttpRequests()
+		http.authorizeRequests()
 			.antMatchers("/manage/**").authenticated()
 			.antMatchers("/member/**").authenticated()
 			.antMatchers("/manage/**").hasRole("ADMIN")
@@ -46,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		 http.formLogin()
          .loginPage("/login")
-         .defaultSuccessUrl("/index") // 성공했을 때 가는 주소 
+         .defaultSuccessUrl("/home") // 성공했을 때 가는 주소 
          .permitAll();
 		
 		  http.logout()
@@ -59,15 +59,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
           .accessDeniedPage("/denied");
 	}
 	
-	   @Override
-	    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-	       auth.userDetailsService(membersvc).passwordEncoder(passwordEncoder());
-	    }
+//	   @Override
+//	    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+//	       auth.userDetailsService(membersvc).passwordEncoder(passwordEncoder());
+//	    }
+//	
 	
-	
-    @Configuration
-    @EnableGlobalMethodSecurity(securedEnabled =  true, prePostEnabled =  true, jsr250Enabled = true)
-    public class MethodSecurity2{
-    	
-    }
+//    @Configuration
+//    @EnableGlobalMethodSecurity(securedEnabled =  true, prePostEnabled =  true, jsr250Enabled = true)
+//    public class MethodSecurity2{
+//    	
+//    }
 }

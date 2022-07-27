@@ -12,7 +12,7 @@ public class MemberReqDTO {
 	
 	private Integer memberid;	
 	private String membername;
-	private String account_id;
+	private String accountid;
 	private String password;	
 	private LocalDateTime lastAccessDt;
 	private LocalDateTime regDt;
@@ -27,7 +27,7 @@ public class MemberReqDTO {
 		super();
 		this.memberid = entity.getMemberid();
 		this.membername = entity.getMembername();
-		this.account_id = entity.getAccount_id();
+		this.accountid = entity.getAccountid();
 		this.password = entity.getPassword();
 		this.lastAccessDt = entity.getLastAccessDt();
 		this.regDt = entity.getRegDt();
@@ -41,7 +41,7 @@ public class MemberReqDTO {
 
 	@Override
 	public String toString() {
-		return "MemberReqDTO [memberid=" + memberid + ", membername=" + membername + ", account_id=" + account_id
+		return "MemberReqDTO [memberid=" + memberid + ", membername=" + membername + ", accountid=" + accountid
 				+ ", password=" + password + ", lastAccessDt=" + lastAccessDt + ", regDt=" + regDt + ", role=" + role
 				+ ", groupid=" + groupid + ", recommendcnt=" + recommendcnt + ", useyn=" + useyn + "]";
 	}

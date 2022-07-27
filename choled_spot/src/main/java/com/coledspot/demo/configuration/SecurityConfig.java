@@ -35,7 +35,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(HttpSecurity http ) throws Exception {
-		http.csrf().disable();
+		http
+        .csrf().disable();
 		
 		http.authorizeRequests()
 			.antMatchers("/manage/**").authenticated()
@@ -59,15 +60,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
           .accessDeniedPage("/denied");
 	}
 	
-//	   @Override
-//	    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-//	       auth.userDetailsService(membersvc).passwordEncoder(passwordEncoder());
-//	    }
-//	
+   @Override
+   public void configure(AuthenticationManagerBuilder auth) throws Exception {
+   		auth.userDetailsService(membersvc).passwordEncoder(passwordEncoder());
+	}
 	
-//    @Configuration
-//    @EnableGlobalMethodSecurity(securedEnabled =  true, prePostEnabled =  true, jsr250Enabled = true)
-//    public class MethodSecurity2{
-//    	
-//    }
+	
+    @Configuration
+    @EnableGlobalMethodSecurity(securedEnabled =  true, prePostEnabled =  true, jsr250Enabled = true)
+    public class MethodSecurity2{
+    	
+    }
 }

@@ -21,29 +21,16 @@ public class MemberReqDTO {
 	private Integer recommendcnt;
 	private Integer useyn;
 	
-	
-	
-	public MemberReqDTO(MemberEntity entity) {
-		super();
-		this.memberid = entity.getMemberid();
-		this.membername = entity.getMembername();
-		this.accountid = entity.getAccountid();
-		this.password = entity.getPassword();
-		this.lastAccessDt = entity.getLastAccessDt();
-		this.regDt = entity.getRegDt();
-		this.role = entity.getRole();
-		this.groupid = entity.getGroupid();
-		this.recommendcnt = entity.getRecommendcnt();
-		this.useyn = entity.getGroupid();
-	}
-
-
-
-	@Override
-	public String toString() {
-		return "MemberReqDTO [memberid=" + memberid + ", membername=" + membername + ", accountid=" + accountid
-				+ ", password=" + password + ", lastAccessDt=" + lastAccessDt + ", regDt=" + regDt + ", role=" + role
-				+ ", groupid=" + groupid + ", recommendcnt=" + recommendcnt + ", useyn=" + useyn + "]";
+	public MemberEntity toEntity() {
+		return MemberEntity.builder().
+				membername(membername).
+				accountid(accountid).
+				password(password).
+				role(role).
+				groupid(groupid).
+				recommendcnt(recommendcnt).
+				useyn(useyn).
+				build();
 	}
 	
 	

@@ -2,10 +2,17 @@ package com.coledspot.demo.domain.maria.member;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 @Getter
+@Setter
+@JsonAutoDetect
+@NoArgsConstructor
 public class MemberReqDTO {
 
 	

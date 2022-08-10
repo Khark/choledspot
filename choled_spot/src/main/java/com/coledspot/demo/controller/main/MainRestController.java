@@ -19,8 +19,8 @@ public class MainRestController {
 	public MemberSvc membersvc;
 	
 	@PostMapping("signup")
-	public String signup(@RequestBody MemberReqDTO dto, HttpServletRequest request )  {
-
+	public String signup( MemberReqDTO dto, HttpServletRequest request )  {
+		System.out.println("##sayhi?"+dto.getAccountid());
 		String result = "";
 		
 		

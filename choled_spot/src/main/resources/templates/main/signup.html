@@ -12,7 +12,7 @@
 	<th:block>
 		<h1>회원 가입</h1>
 		<hr>
-	
+	<!-- JSON.stringify(form),  -->
 		<!-- <form th:action="@{/signup}" method="post" id="frm"> -->
 			<form id="memberForm" name ="memberForm" th:object ="${MemberReqDTO}">
 			<table>
@@ -48,12 +48,12 @@
 		function fnSubmit(){
 
 			var form = $("#memberForm").serialize();    
+		
 			$.ajax({
-				url : "rest/signup",
-				processData: false,
-	            contentType: false,
+				url : 'rest/signup',
+	            contentType: 'application/json',
 	            type : 'POST', 
-	            data : form, 
+	            data : form,
 				 success : function(data){
 				 $('.result').text(data); },
 				 error:function(request, status, error){

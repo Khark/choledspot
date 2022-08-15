@@ -19,14 +19,18 @@ public class MainRestController {
 	public MemberSvc membersvc;
 	
 	@PostMapping("signup")
-	public String signup( MemberReqDTO dto, HttpServletRequest request )  {
-		System.out.println("##sayhi?"+dto.getAccountid());
+	public MemberReqDTO signup(@RequestBody MemberReqDTO dto, HttpServletRequest request )  {
+		MemberReqDTO vo = new MemberReqDTO();
+		System.out.println("##sayhi?");
+		
 		String result = "";
-		
-		
+		System.out.println("@@accountid?"+dto.getAccountid());
+				
+		vo = dto;
 		// membersvc.save(dto);
 				
-		return result;
+		
+		return  vo ;
 	}
 	
 	

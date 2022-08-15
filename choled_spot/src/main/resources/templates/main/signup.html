@@ -45,20 +45,37 @@
 	</th:block>
 	<script th:inline="javascript">
 	
+		function objectifyForm(formArray) {//serializeArray data function
+			var returnArray = {};
+			for (var i = 0; i < formArray.length; i++) {
+				returnArray[formArray[i]['name']] = formArray[i]['value'];
+			}
+			
+			return returnArray;
+		}
+	
 		function fnSubmit(){
-
-			var form = $("#memberForm").serialize();    
 		
+			var formsubmitSerialArray = $("#memberForm").serializeArray();
+			var formsubmit = JSON.stringify(objectifyForm(formsubmitSerialArray));
+			alert(formsubmit);
 			$.ajax({
 				url : 'rest/signup',
-	            contentType: 'application/json',
-	            type : 'POST', 
-	            data : form,
-				 success : function(data){
-				 $('.result').text(data); },
-				 error:function(request, status, error){
-				 alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-				 }
+				type : 'POST',
+	            accept : "application/json",
+				contentType : "application/json; charset=utf-8",
+				dataType : "json",
+				data : formsubmit,
+				
+				success: function(data){
+		    	alert("hi");
+		    	
+		   		},
+		   		 error: function (request, status, error){    
+		    	console.log(status);
+		    	alert("ERROR");
+		  	  }
+				
 			});
 		}
 	</script>

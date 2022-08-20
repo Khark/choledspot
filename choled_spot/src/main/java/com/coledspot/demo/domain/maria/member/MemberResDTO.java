@@ -19,7 +19,7 @@ public class MemberResDTO {
 	private Integer role;
 	private Integer groupid;
 	private Integer recommendcnt;
-	private Integer useyn;
+	private String useyn;
 
 	
 
@@ -34,7 +34,7 @@ public class MemberResDTO {
 		this.role = entity.getRole();
 		this.groupid = entity.getGroupid();
 		this.recommendcnt = entity.getRecommendcnt();
-		this.useyn = entity.getGroupid();
+		this.useyn = entity.getUseyn();
 	}
 
 

@@ -26,7 +26,7 @@ public class MemberReqDTO {
 	private Integer role;
 	private Integer groupid;
 	private Integer recommendcnt;
-	private Integer useyn;
+	private String useyn;
 	
 	public MemberEntity toEntity() {
 		return MemberEntity.builder().

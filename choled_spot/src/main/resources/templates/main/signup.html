@@ -58,7 +58,6 @@
 		
 			var formsubmitSerialArray = $("#memberForm").serializeArray();
 			var formsubmit = JSON.stringify(objectifyForm(formsubmitSerialArray));
-			alert(formsubmit);
 			$.ajax({
 				url : 'rest/signup',
 				type : 'POST',
@@ -68,8 +67,13 @@
 				data : formsubmit,
 				
 				success: function(data){
-		    	alert("hi");
-		    	
+					if(data.result == 'ProcessSucess'){
+						alert('가입에 성공하셨습니다.');
+					}else if(data.result == 'AccountExist'){
+						alert('이미 존재하는 id 입니다.');					
+					}else{
+						alert('가입에 실패했습니다.');					
+					}
 		   		},
 		   		 error: function (request, status, error){    
 		    	console.log(status);

@@ -31,7 +31,6 @@ public class MemberSvcImpl implements MemberSvc {
 		Optional<MemberEntity> memberEntityWrapper = memberRepository.findByAccountid(accountid);
 		MemberEntity memberEntity = memberEntityWrapper.orElse(null);
 		List<GrantedAuthority> authorites = new ArrayList<>();
-		
 		switch (memberEntity.getRole()) {
 		case 1 :
 			authorites.add(new SimpleGrantedAuthority("ROLE_MEMBER")); // 1인 그룹은 회원 
@@ -50,18 +49,35 @@ public class MemberSvcImpl implements MemberSvc {
 	}
 
 	@Override
-	public Integer save(MemberReqDTO dto) {
+	public MemberEntity save(MemberReqDTO dto) {
 		// TODO Auto-generated method stub
-		
 		MemberEntity member = dto.toEntity();
-		member.setLastAccessDt(LocalDateTime.now());
-		member.setRegDt(LocalDateTime.now());
+		MemberEntity resultvo = new MemberEntity();
+		String result = "ProcessSucess";
+		try {
 		
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		member.setPassword(passwordEncoder.encode(member.getPassword()));
 
-		return memberRepository.save(member).getMemberid();
+			Optional<MemberEntity> memberEntityWrapper = memberRepository.findByAccountid(dto.getAccountid());
+			MemberEntity memberEntity = memberEntityWrapper.orElse(null);
+			if(memberEntity == null) {
+				member.setLastAccessDt(LocalDateTime.now());
+				member.setRegDt(LocalDateTime.now());
+				
+				BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+				member.setPassword(passwordEncoder.encode(member.getPassword()));
+				resultvo = memberRepository.save(member);
+			}else {
+				result = "AccountExist";
+			}
 		
+		}catch (Exception e) {
+			// TODO: handle exception
+			result = "ProcesFail";
+			e.printStackTrace();
+		}
+		resultvo.setResult(result);
+		return resultvo;
+
 	}
 
 	@Override

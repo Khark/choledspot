@@ -8,19 +8,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
-@Table(name="member")
+@Entity(name="MEMBER")
+@Table(name="MEMBER")
 @Setter
 @Getter
 @NoArgsConstructor
 
-public class MemberEntity {
+public class MemberEntity  {
 
 	
 	@Id
@@ -52,10 +53,10 @@ public class MemberEntity {
 	private Integer recommendcnt;
 	
 	@Column(name="useyn" )
-	private Integer useyn;
+	private String useyn;
 
 	@Builder
-	public MemberEntity(String membername, String accountid, String password, Integer role, Integer groupid, Integer recommendcnt, Integer useyn) {
+	public MemberEntity(String membername, String accountid, String password, Integer role, Integer groupid, Integer recommendcnt, String useyn) {
 		
 		this.membername = membername;
 		this.accountid = accountid;
@@ -67,5 +68,11 @@ public class MemberEntity {
 
 	}
 	
+	@Transient
+	private String msg;
+	@Transient
+	private String result;
+	@Transient
+	private String error;
 	
 }

@@ -25,30 +25,10 @@ public class MainRestController {
 		//String referer = (String)request.getHeader("REFERER");
 		//회원용 가입 
 		MemberEntity me = new MemberEntity();
-		String refer = request.getHeader("REFERER");
-		System.out.println("###refer? "+refer.substring(refer.lastIndexOf("/")+1 , refer.length()));
 		
-		if(refer != null ) {
-			refer = refer.substring(refer.lastIndexOf("/")+1 , refer.length());
-			dto.setUseyn("Y");
-			if(refer.equals("signup")) {
-				dto.setRole(1);
-			}else if(refer.equals("clientup")) {
-				dto.setRole(2);
-				
-			}else if(refer.equals("adminup")) {
-				dto.setRole(9);
-				
-			}
-			if(dto.getRole() != null) {
-				me = membersvc.save(dto);
-			}else {
-				me.setError("ProcessFail");
-			}
-		}else {
-			me.setError("NotAccess");
-		}
 		
+		me = membersvc.save(dto , request);
+
 		
 		
 		return  me;

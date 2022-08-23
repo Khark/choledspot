@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -31,6 +33,7 @@ public class MemberSvcImpl implements MemberSvc {
 		Optional<MemberEntity> memberEntityWrapper = memberRepository.findByAccountid(accountid);
 		MemberEntity memberEntity = memberEntityWrapper.orElse(null);
 		List<GrantedAuthority> authorites = new ArrayList<>();
+		System.out.println("###"+memberEntity.getRole());
 		switch (memberEntity.getRole()) {
 		case 1 :
 			authorites.add(new SimpleGrantedAuthority("ROLE_MEMBER")); // 1인 그룹은 회원 
@@ -49,26 +52,52 @@ public class MemberSvcImpl implements MemberSvc {
 	}
 
 	@Override
-	public MemberEntity save(MemberReqDTO dto) {
+	public MemberEntity save(MemberReqDTO dto , HttpServletRequest request) {
 		// TODO Auto-generated method stub
+		String refer = request.getHeader("REFERER");
+
 		MemberEntity member = dto.toEntity();
 		MemberEntity resultvo = new MemberEntity();
 		String result = "ProcessSucess";
-		try {
 		
+		
+		
+		try {
+			if(refer != null ) {
+				refer = refer.substring(refer.lastIndexOf("/")+1 , refer.length());
+				if(refer.equals("signup")) {
+					member.setRole(1);
+				}else if(refer.equals("client_signup")) {
+					member.setRole(2);
+					
+				}else if(refer.equals("admin_signup")) {
+					member.setRole(9);
+					
+				}
+				if(member.getRole() != null) {
+					Optional<MemberEntity> memberEntityWrapper = memberRepository.findByAccountid(dto.getAccountid());
+					MemberEntity memberEntity = memberEntityWrapper.orElse(null);
+					if(memberEntity == null && member.getRole() != null) {
+						member.setLastAccessDt(LocalDateTime.now());
+						member.setRegDt(LocalDateTime.now());
+						
+						BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+						member.setPassword(passwordEncoder.encode(member.getPassword()));
+						member.setUseyn("Y");
+						resultvo = memberRepository.save(member);
+						result = "ProcessSucess";
 
-			Optional<MemberEntity> memberEntityWrapper = memberRepository.findByAccountid(dto.getAccountid());
-			MemberEntity memberEntity = memberEntityWrapper.orElse(null);
-			if(memberEntity == null) {
-				member.setLastAccessDt(LocalDateTime.now());
-				member.setRegDt(LocalDateTime.now());
-				
-				BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-				member.setPassword(passwordEncoder.encode(member.getPassword()));
-				resultvo = memberRepository.save(member);
+					}else {
+						result = "AccountExist";
+					}
+				}else {
+					result = "ProcessFail";
+
+				}
 			}else {
-				result = "AccountExist";
+				result = "NotAccess";
 			}
+		
 		
 		}catch (Exception e) {
 			// TODO: handle exception
@@ -76,6 +105,8 @@ public class MemberSvcImpl implements MemberSvc {
 			e.printStackTrace();
 		}
 		resultvo.setResult(result);
+		
+		
 		return resultvo;
 
 	}

@@ -17,9 +17,6 @@ public class MainController {
 	@GetMapping("/home")
 	public String home() {
 		
-	
-		
-		
 		return "main/home";
 	}
 	
@@ -29,6 +26,26 @@ public class MainController {
 		model.addAttribute("MemberReqDTO", memberReqDto);
 		return "main/signup";
 	}
+	
+	@GetMapping("admin_signup")
+	public String admin_signup(@ModelAttribute("MemberReqDTO") MemberReqDTO memberReqDto, ModelMap model )  {
+		
+		model.addAttribute("MemberReqDTO", memberReqDto);
+		return "main/admin_signup";
+	}
+	
+
+	
+	@GetMapping("client_signup")
+	public String client_signup(@ModelAttribute("MemberReqDTO") MemberReqDTO memberReqDto, ModelMap model )  {
+		
+		model.addAttribute("MemberReqDTO", memberReqDto);
+		return "main/client_signup";
+	}
+	
+
+
+	
 	
 	@GetMapping("login")
 	public String login() {

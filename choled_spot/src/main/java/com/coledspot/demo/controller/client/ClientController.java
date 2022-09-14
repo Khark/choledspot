@@ -13,13 +13,13 @@ import com.coledspot.demo.domain.maria.client.ClientEntity;
 
 
 @Controller
-@RequestMapping(path = "/client/*")
+@RequestMapping("/client/*")
 public class ClientController {
 
 		@GetMapping("clientList")
 		public String clienetList(Model model, @RequestParam(required = false, defaultValue = "0") 
 		Integer page, @RequestParam(required = false, defaultValue = "10") Integer size ) throws Exception {
-			System.out.println("####");
+		System.out.println("######??");
 			try {
 				
 			}catch (Exception e) {
@@ -30,12 +30,12 @@ public class ClientController {
 			
 			
 			
-			return "/client/clientList";
+			return "client/clientList";
 		}
 
 		@GetMapping("clientWrite")
 		public String clientWrite( @ModelAttribute("clientEntity") @Validated ClientEntity clientEntity, ModelMap mode) {
 
-			return "/client/clientWrite";
+			return "client/clientWrite";
 		}
 }

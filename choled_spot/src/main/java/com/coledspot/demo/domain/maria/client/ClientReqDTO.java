@@ -20,5 +20,13 @@ public class ClientReqDTO {
 	private String delyn;
 	
 	public ClientEntity toEntity() {
+		return ClientEntity.builder().
+				clientid(clientid).
+				memberid(memberid).
+				client_name(client_name).
+				client_info(client_info).
+				delyn(delyn).build();
 	}
+
+
 }

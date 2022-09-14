@@ -44,7 +44,10 @@ public class MainController {
 	}
 	
 
-
+	@GetMapping("test")
+	public String test() {
+		return "client/clientList";
+	}
 	
 	
 	@GetMapping("login")

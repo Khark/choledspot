@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 
+
+		<div sec:authorize="hasRole('ROLE_CLIENT')">
+		
+			<a th:href="@{./clientWrite}"> <span>작성</span> </a>
+		
+		</div>	
 </body>
 </html>

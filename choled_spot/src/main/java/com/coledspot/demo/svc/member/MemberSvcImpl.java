@@ -33,7 +33,6 @@ public class MemberSvcImpl implements MemberSvc {
 		Optional<MemberEntity> memberEntityWrapper = memberRepository.findByAccountid(accountid);
 		MemberEntity memberEntity = memberEntityWrapper.orElse(null);
 		List<GrantedAuthority> authorites = new ArrayList<>();
-		System.out.println("###"+memberEntity.getRole());
 		switch (memberEntity.getRole()) {
 		case 1 :
 			authorites.add(new SimpleGrantedAuthority("ROLE_MEMBER")); // 1인 그룹은 회원 
@@ -47,6 +46,7 @@ public class MemberSvcImpl implements MemberSvc {
 		default:
 			break;
 		}
+		
 		
 		return new User( memberEntity.getAccountid() , memberEntity.getPassword() ,authorites );
 	}
@@ -69,10 +69,8 @@ public class MemberSvcImpl implements MemberSvc {
 					member.setRole(1);
 				}else if(refer.equals("client_signup")) {
 					member.setRole(2);
-					
 				}else if(refer.equals("admin_signup")) {
 					member.setRole(9);
-					
 				}
 				if(member.getRole() != null) {
 					Optional<MemberEntity> memberEntityWrapper = memberRepository.findByAccountid(dto.getAccountid());

@@ -25,7 +25,8 @@ public class ClientEntity {
 	private Integer clientid;
 	private Integer memberid;
 	
-	
+	private String client_name;
+	private String client_info;
 	
 	private String delyn;
 	private LocalDateTime createdate = LocalDateTime.now();

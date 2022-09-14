@@ -39,7 +39,7 @@
 					<a sec:ahtorize="hasRole('ROLE_ADMIN')" th:href="@{/code/codelist}">코드관리</a>		
 				
 				</div> <!-- 관리자 권한인 경우 true -->
-								<a sec:ahtorize="hasRole('ROLE_CLIENT')" th:href="@{/client/clientList}">업체관리</a>		
+					<a sec:ahtorize="hasRole('ROLE_CLIENT')" th:href="@{/client/clientList}">업체관리</a>		
 			
 				<div sec:authorize="hasRole('ROLE_USER')">33</div> <!-- 사용자 권한인 경우 true -->
 	        </div>

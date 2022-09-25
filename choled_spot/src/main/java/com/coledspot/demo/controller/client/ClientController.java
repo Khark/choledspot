@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.coledspot.demo.domain.maria.client.ClientEntity;
+import com.coledspot.demo.domain.maria.client.ClientReqDTO;
 
 
 @Controller
@@ -34,7 +35,9 @@ public class ClientController {
 		}
 
 		@GetMapping("clientWrite")
-		public String clientWrite( @ModelAttribute("clientEntity") @Validated ClientEntity clientEntity, ModelMap mode) {
+		public String clientWrite( @ModelAttribute("ClientReqDTO") @Validated ClientReqDTO ClientReqDTO, ModelMap model) {
+
+			model.addAttribute("ClientReqDTO", ClientReqDTO);
 
 			return "client/clientWrite";
 		}

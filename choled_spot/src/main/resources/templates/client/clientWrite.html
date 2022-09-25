@@ -7,8 +7,18 @@
 <body>
 <th:block>
 
-<form id ="frm" th:action="@{/client/clientWrite}" th:object="${ClinetReqDto}" method="post">
-
+<form id ="frm" th:action="@{/client/clientWrite}" th:object="${ClientReqDTO}" method="post">
+	<table>
+		<tr>
+			<th>
+				
+			</th>
+			<td>
+				<input type="text" th:field ="*{client_name}"/>
+			</td>
+		</tr>
+	
+	</table>
 </form>
 	
 </th:block>

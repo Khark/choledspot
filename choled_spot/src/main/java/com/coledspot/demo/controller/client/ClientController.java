@@ -1,5 +1,8 @@
 package com.coledspot.demo.controller.client;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -35,10 +38,11 @@ public class ClientController {
 		}
 
 		@GetMapping("clientWrite")
-		public String clientWrite( @ModelAttribute("ClientReqDTO") @Validated ClientReqDTO ClientReqDTO, ModelMap model) {
-
+		public String clientWrite( @ModelAttribute("ClientReqDTO") @Validated ClientReqDTO ClientReqDTO, ModelMap model, HttpServletRequest request) {
+			HttpSession session = request.getSession();
+			System.out.println("####memberid?"+session.getAttribute("memberid"));
 			model.addAttribute("ClientReqDTO", ClientReqDTO);
-
+			
 			return "client/clientWrite";
 		}
 }

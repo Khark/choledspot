@@ -1,5 +1,7 @@
 package com.coledspot.demo.configuration;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,8 +38,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http ) throws Exception {
 		http
-        .csrf().disable();
+        // 비동기를 사용하기 위한 disable
+		.csrf().disable();
 		
+		http.sessionManagement()
+        .maximumSessions(1)
+        .maxSessionsPreventsLogin(true)
+        
+        ;
 		http.authorizeRequests()
 			.antMatchers("/manage/**").authenticated()
 			.antMatchers("/member/**").authenticated()
@@ -45,6 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.antMatchers("/client/**").hasRole("CLIENT")
 			.anyRequest().permitAll()
 		;
+		
 		
 		 http.formLogin()
          .loginPage("/login")
@@ -62,8 +71,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	}
 	
    @Override
-   public void configure(AuthenticationManagerBuilder auth) throws Exception {
+   public void configure(AuthenticationManagerBuilder auth ) throws Exception {
+	   
    		auth.userDetailsService(membersvc).passwordEncoder(passwordEncoder());
+   		
 	}
 	
 	

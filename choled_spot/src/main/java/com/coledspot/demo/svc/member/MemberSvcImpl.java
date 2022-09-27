@@ -30,6 +30,7 @@ public class MemberSvcImpl implements MemberSvc {
 	@Override
 	public UserDetails loadUserByUsername(String accountid) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
+
 		Optional<MemberEntity> memberEntityWrapper = memberRepository.findByAccountid(accountid);
 		MemberEntity memberEntity = memberEntityWrapper.orElse(null);
 		List<GrantedAuthority> authorites = new ArrayList<>();

@@ -24,6 +24,8 @@ public class MainController {
 	public String signup(@ModelAttribute("MemberReqDTO") MemberReqDTO memberReqDto, ModelMap model )  {
 		
 		model.addAttribute("MemberReqDTO", memberReqDto);
+		System.out.println("#####memberid?"+memberReqDto.getMemberid());
+		
 		return "main/signup";
 	}
 	

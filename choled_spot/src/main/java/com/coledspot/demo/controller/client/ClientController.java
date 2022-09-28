@@ -2,6 +2,7 @@ package com.coledspot.demo.controller.client;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,9 +23,12 @@ public class ClientController {
 
 		@GetMapping("clientList")
 		public String clienetList(Model model, @RequestParam(required = false, defaultValue = "0") 
-		Integer page, @RequestParam(required = false, defaultValue = "10") Integer size ) throws Exception {
-		System.out.println("######??");
-			try {
+		Integer page, @RequestParam(required = false, defaultValue = "10") Integer size ,HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession();
+		
+		// session data parameter is null..
+		
+		try {
 				
 			}catch (Exception e) {
 				// TODO: handle exception

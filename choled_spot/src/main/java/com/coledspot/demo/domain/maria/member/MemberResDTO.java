@@ -20,7 +20,7 @@ public class MemberResDTO {
 	private Integer groupid;
 	private Integer recommendcnt;
 	private String useyn;
-
+	private String email;
 	
 
 	public MemberResDTO(MemberEntity entity) {
@@ -35,6 +35,7 @@ public class MemberResDTO {
 		this.groupid = entity.getGroupid();
 		this.recommendcnt = entity.getRecommendcnt();
 		this.useyn = entity.getUseyn();
+		this.email = entity.getEmail();
 	}
 
 

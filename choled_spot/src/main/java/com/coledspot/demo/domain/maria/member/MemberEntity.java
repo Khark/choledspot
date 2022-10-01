@@ -55,8 +55,11 @@ public class MemberEntity  {
 	@Column(name="useyn" )
 	private String useyn;
 
+	@Column(name="email")
+	private String email;
+	
 	@Builder
-	public MemberEntity(String membername, String accountid, String password, Integer role, Integer groupid, Integer recommendcnt, String useyn) {
+	public MemberEntity(String membername, String accountid, String password, Integer role, Integer groupid, Integer recommendcnt, String useyn, String email) {
 		
 		this.membername = membername;
 		this.accountid = accountid;
@@ -65,7 +68,8 @@ public class MemberEntity  {
 		this.groupid = groupid;
 		this.recommendcnt = recommendcnt;
 		this.useyn = useyn;
-
+		this.email = email;
+		
 	}
 	
 	@Transient

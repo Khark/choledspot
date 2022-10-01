@@ -27,6 +27,7 @@ public class MemberReqDTO {
 	private Integer groupid;
 	private Integer recommendcnt;
 	private String useyn;
+	private String email;
 	
 	public MemberEntity toEntity() {
 		return MemberEntity.builder().
@@ -37,6 +38,7 @@ public class MemberReqDTO {
 				groupid(groupid).
 				recommendcnt(recommendcnt).
 				useyn(useyn).
+				email(email).
 				build();
 	}
 	

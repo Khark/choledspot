@@ -22,7 +22,7 @@ public class PrincipalDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
 		
-		Member member = memberRepository.findBy
+		Member member = memberRepository.findb
 		
 		return null;
 	}

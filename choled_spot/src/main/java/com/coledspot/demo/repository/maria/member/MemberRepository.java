@@ -12,4 +12,7 @@ public interface MemberRepository extends JpaRepository<MemberEntity, Integer>{
 //	Optional<MemberEntity> findByAccount_id(String account_id);
 	
 	Optional<MemberEntity> findByAccountid(String accountid);
+	Optional<MemberEntity> findByEmail(String email);
+	
+	
 }

@@ -57,6 +57,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		 http.formLogin()
          .loginPage("/login")
+        // .usernameParameter(null) 임의로 로그인 아이디  설정 
+        // .passwordParameter(null) 임이릐 로그인 패스워드 설정 
          .defaultSuccessUrl("/home") // 성공했을 때 가는 주소 
          .permitAll();
 		

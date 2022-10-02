@@ -4,6 +4,8 @@ import java.io.UnsupportedEncodingException;
 
 import org.springframework.stereotype.Service;
 
+import com.coledspot.demo.configuration.UnauthorizedException;
+
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;

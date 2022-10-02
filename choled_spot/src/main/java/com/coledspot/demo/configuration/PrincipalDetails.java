@@ -8,10 +8,12 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.coledspot.demo.domain.maria.member.MemberEntity;
+
 public class PrincipalDetails implements UserDetails {
 
 	private Member member;  // 콤포지션
-
+	private MemberEntity memberentity;
     // 생성자를 통해서 유저 정보(Member)를 넣어준다.
     public PrincipalDetails(Member member) {
         this.member = member;
@@ -23,24 +25,14 @@ public class PrincipalDetails implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
         Collection<GrantedAuthority> collect = new ArrayList<>();
-
         // 권한을 넣어준다. 권한이 여러개라면 여러개 넣어줄 수도 있다.
-        collect.add(new SimpleGrantedAuthority(member.getRole().name()));
 
+    //    collect.add(new SimpleGrantedAuthority(memberentity.getRole()) )
         return collect;
     }
 
 	
 	
-    @Override
-    public String getPassword() {
-        return member.getPw();
-    }
-
-    @Override
-    public String getUsername() {
-        return member.getEmail();
-    }
 
     // 아래의 녀석들은 기본 값이 다 false로 되어있는데 true로 바꿔두자. 지금 당장 쓸일이 없기 때문, 만약 쓸일이 생기면 로직넣어서 true,false 골라주면 된다.
     @Override
@@ -63,4 +55,18 @@ public class PrincipalDetails implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

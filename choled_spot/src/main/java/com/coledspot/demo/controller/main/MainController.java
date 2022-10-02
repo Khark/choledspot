@@ -1,5 +1,10 @@
 package com.coledspot.demo.controller.main;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,8 +20,10 @@ public class MainController {
 
 		
 	@GetMapping("/home")
-	public String home() {
-		System.out.println("##");
+	public String home(HttpServletRequest req, HttpServletResponse resp)   {
+		HttpSession session =  req.getSession(true);
+		
+		
 		return "main/home";
 	}
 	
@@ -61,7 +68,7 @@ public class MainController {
 	@PostMapping("login")
 	public String loginPost() {
 		
-		
+		System.out.println("######loginpost?");
 		return "";
 	}
 	

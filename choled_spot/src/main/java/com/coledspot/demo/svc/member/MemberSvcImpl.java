@@ -7,8 +7,10 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -21,12 +23,19 @@ import com.coledspot.demo.domain.maria.member.MemberEntity;
 import com.coledspot.demo.domain.maria.member.MemberReqDTO;
 import com.coledspot.demo.repository.maria.member.MemberRepository;
 
+import groovyjarjarantlr4.v4.parse.ANTLRParser.finallyClause_return;
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Service
 public class MemberSvcImpl implements MemberSvc {
 
 	@Autowired
 	private MemberRepository memberRepository;
 
+	@Autowired
+	private final HttpSession httpSession;
+	
 	@Override
 	public UserDetails loadUserByUsername(String accountid) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
@@ -48,6 +57,10 @@ public class MemberSvcImpl implements MemberSvc {
 			break;
 		}
 		
+		// session 값 설정 해주기  
+		httpSession.setAttribute("membername", memberEntity.getMembername());
+		httpSession.setAttribute("accountid", memberEntity.getAccountid());
+
 		
 		return new User( memberEntity.getAccountid() , memberEntity.getPassword() ,authorites );
 	}
@@ -112,7 +125,7 @@ public class MemberSvcImpl implements MemberSvc {
 
 	@Override
 	public HashMap<String, Object> findAll(Integer page, Integer size) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated )method stub
 		return null;
 	}
 	

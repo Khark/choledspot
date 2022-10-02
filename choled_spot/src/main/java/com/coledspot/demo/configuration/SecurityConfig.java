@@ -56,10 +56,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		
 		 http.formLogin()
-         .loginPage("/login")
+         .loginPage("/login") // 로그인 페이지 경로 
+         .loginProcessingUrl("/login") // 로그인 처리 경로, 로그인 form 의 action과 동일 해야
+         
         // .usernameParameter(null) 임의로 로그인 아이디  설정 
         // .passwordParameter(null) 임이릐 로그인 패스워드 설정 
-         .defaultSuccessUrl("/home") // 성공했을 때 가는 주소 
+      //   .defaultSuccessUrl("/home?asdf=1234") // 성공했을 때 가는 주소 
+         
          .permitAll();
 		
 		  http.logout()
@@ -74,7 +77,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
    @Override
    public void configure(AuthenticationManagerBuilder auth ) throws Exception {
-	   	System.out.println("#######");
+	   	System.out.println("#######configure");
    		auth.userDetailsService(membersvc).passwordEncoder(passwordEncoder());
    		
 	}

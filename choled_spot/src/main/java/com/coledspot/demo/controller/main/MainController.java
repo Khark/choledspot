@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,8 +23,12 @@ public class MainController {
 		
 	@GetMapping("/home")
 	public String home(HttpServletRequest req, HttpServletResponse resp)   {
-		HttpSession session =  req.getSession(true);
+		System.out.println("##");
 		
+		HttpSession session =  req.getSession(true);
+		System.out.println("####"+ session.getAttribute("membername"));
+		
+		SecurityContext securityContext = SecurityContextHolder.getContext();
 		
 		return "main/home";
 	}

@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 
 import com.coledspot.demo.domain.maria.member.MemberEntity;
 import com.coledspot.demo.domain.maria.member.MemberReqDTO;
+import com.coledspot.demo.domain.maria.member.MemberResDTO;
 import com.coledspot.demo.repository.maria.member.MemberRepository;
 
 import groovyjarjarantlr4.v4.parse.ANTLRParser.finallyClause_return;
@@ -127,6 +128,16 @@ public class MemberSvcImpl implements MemberSvc {
 	public HashMap<String, Object> findAll(Integer page, Integer size) {
 		// TODO Auto-generated )method stub
 		return null;
+	}
+
+	@Override
+	public MemberResDTO getMemberInfo(String id) {
+		// TODO Auto-generated method stub
+		
+		return memberRepository.findByAccountid(id)
+                .map(MemberResDTO::of)
+                .orElseThrow(() -> new RuntimeException("유저 정보가 없습니다."));
+
 	}
 	
 

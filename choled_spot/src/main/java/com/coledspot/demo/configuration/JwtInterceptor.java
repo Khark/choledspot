@@ -1,5 +1,4 @@
 package com.coledspot.demo.configuration;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 

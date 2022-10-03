@@ -17,4 +17,7 @@ public interface MemberSvc extends UserDetailsService {
 	
 	MemberEntity save(MemberReqDTO dto , HttpServletRequest request);
 	HashMap<String, Object> findAll(Integer page, Integer size);
+	
+	MemberResDTO getMemberInfo(String id);
+	
 }

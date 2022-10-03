@@ -59,7 +59,7 @@ public class JwtServiceImpl implements JwtService {
 
 		}catch (Exception e) {
 			// TODO: handle exception
-			return new UnauthorizedException();
+			return new UnauthorizedException() != null;
 
 		}
 		
